@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :products
+
   namespace :introduces do 
     get :index
     get :information

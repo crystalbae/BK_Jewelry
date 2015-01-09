@@ -1,0 +1,40 @@
+p#notice
+  = notice
+
+.row.container.detail_page
+  .detail_img.col-md-5
+    = image_tag(@product.image, :size => "400x400")
+  .details.col-md-7
+    dl.dl-horizontal
+      dt 
+        i.fa.fa-caret-right
+        |  모델명
+      dd = @product.name
+      br
+      dt 
+        i.fa.fa-caret-right
+        |  분류
+      dd = @product.category
+      br
+      dt 
+        i.fa.fa-caret-right
+        |   제조사
+      dd dkjk
+      br
+      dt 
+        i.fa.fa-caret-right
+        |   판매가
+      dd 430,000원
+      br
+      dt 
+        i.fa.fa-caret-right
+        |   상세설명
+      dd = @product.explanation
+    br
+    .pull-right
+      = link_to 'Edit', edit_product_path(@product)
+      |  | 
+      = link_to 'Back', products_path  
+    / form action="/boards/new" method="post" enctype="multipart/form-data"
+    /   input type="hidden" name="item" value=@jewelry.title
+    /     button.btn.btn-default.btn-sm.pull-right 문의하기

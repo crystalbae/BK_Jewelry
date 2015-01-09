@@ -1,0 +1,37 @@
+= form_for(@product, :html => {:multipart => true}) do |f|
+  = if @product.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@product.errors.count, "error")
+        prohibited this product from being saved
+
+      ul
+      - @product.errors.full_messages.each do |message|
+        li
+          = message
+
+  .form-group
+    label Category
+    |   
+    = f.select :category, class: "form-control"
+      option wedding
+      option propose
+      option ring
+      option necklace
+      option earring
+      option bracelet
+
+  .form-group
+    label Name
+    = f.text_field :name, class: "form-control"
+  
+  .form-group
+    label Explanation
+    = f.text_area :explanation, class: "form-control", rows: 7
+
+  .form-group
+    label Image
+    = f.file_field :image
+
+  .pull-right
+    button.btn.btn-default.btn-sm type="submit" 완료
