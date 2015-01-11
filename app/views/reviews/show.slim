@@ -1,0 +1,22 @@
+.panel.panel-default.container style="width: 600px"
+  / p#notice
+  /   = notice
+  .panel-heading 
+    h3.panel-title 
+      = @review.title
+  .panel-body
+    = image_tag(@review.image.thumb) if @review.image?
+    br
+    = @review.content
+    br
+    br
+    - if current_user.email == @review.email || current_user.email == "admin@naver.com"
+        div.pull-right
+          = link_to 'Edit', edit_review_path(@review)
+          |  |
+          = link_to 'Destroy', @review, method: :delete, data: { confirm: 'Are you sure?' }
+          |  |
+          = link_to 'Back', reviews_path
+    - else
+        div.pull-right
+          = link_to 'Back', reviews_path

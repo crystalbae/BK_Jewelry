@@ -1,15 +1,16 @@
 # == Schema Information
 #
-# Table name: asks
+# Table name: reviews
 #
 #  id         :integer          not null, primary key
 #  title      :string(255)
 #  content    :text
 #  writer     :string(255)
-#  created_at :datetime
-#  updated_at :datetime
 #  email      :string(255)
 #  product_id :integer
+#  image      :string(255)
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -18,10 +19,14 @@ one:
   title: MyString
   content: MyText
   writer: MyString
-  model: MyString
+  email: MyString
+  product_id: 1
+  image: MyString
 
 two:
   title: MyString
   content: MyText
   writer: MyString
-  model: MyString
+  email: MyString
+  product_id: 1
+  image: MyString

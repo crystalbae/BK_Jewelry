@@ -1,0 +1,25 @@
+.container style="width: 600px"
+  table.table
+    thead
+      tr
+        th no
+        th title
+        th name
+
+    tbody
+      - @reviews.reverse.each do |review|
+        tr
+          td.review_no
+            = review.id
+          td.review_title
+            = link_to review.title, review
+          td.review_writer 
+            = review.writer
+  / .page
+  /   = paginate @reviews
+
+  div.pull-right
+    button.btn.btn-default.btn-sm
+      i.fa.fa-pencil
+      = link_to ' Write', new_review_path
+
