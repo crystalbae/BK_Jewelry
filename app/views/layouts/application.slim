@@ -13,8 +13,22 @@ html
     = csrf_meta_tags
 
   body.container
+    .container.login_box
+      - if current_user.nil?
+      - elsif current_user.email == "admin@naver.com"
+        a href="/products/new" 
+          i.fa.fa-pencil
+          |  
+           
+      - if user_signed_in?
+        = link_to current_user.username, edit_user_registration_path
+        span#font 님 로그인 중 | 
+        = link_to "로그아웃", destroy_user_session_path, method: :delete
+      - else
+        = link_to "회원가입 | ", new_user_registration_path
+        = link_to "로그인", new_user_session_path
     
-    h1.title BK Jewelry
+    h1.title BK Jewelry 
 
     ul.nav.nav-tabs
       li.dropdown
@@ -49,10 +63,10 @@ html
             a role="menuitem" tabindex="-1" href="/products?category=earring" Earring
           li role="presentation"
             a role="menuitem" tabindex="-1" href="/products?category=bracelet" Bracelet
+      li
+        a href="/asks" Q&A
       / li
       /   a href="/reservations" RESERVATION
-      / li
-      /   a href="/boards" Q&A
       / li
       /   a href="/reviews" REVIEW
 

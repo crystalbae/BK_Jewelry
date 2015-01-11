@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+#font {
+  color: grey;
+}
+
+.login_box {
+  text-align: right;
+  padding: 5px;
+}

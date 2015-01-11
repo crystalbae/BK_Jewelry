@@ -1,0 +1,53 @@
+.container style="width: 800px"
+  .jumbotron
+
+    h2 
+      |Edit 
+      = resource_name.to_s.humanize
+    br
+
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true, class: "form-horizontal" }) do |f| 
+      
+      = devise_error_messages! 
+     
+      .form-group
+        = f.label :username, class: "col-sm-2 control-label" 
+        .col-sm-10
+          = f.text_field :username, :autofocus => true 
+
+      .form-group
+        = f.label :email, class: "col-sm-2 control-label" 
+        .col-sm-10
+          = f.email_field :email, autofocus: true 
+       
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation? 
+        div 
+          span Currently waiting confirmation for: 
+          = resource.unconfirmed_email
+
+      .form-group
+        = f.label :password, class: "col-sm-2 control-label" 
+        .col-sm-10
+          = f.password_field :password, autocomplete: "off"
+        i leave blank if you don't want to change it 
+
+      .form-group
+        = f.label :password_confirmation, class: "col-sm-2 control-label", style: "padding-top: 0px;"
+        .col-sm-10
+          = f.password_field :password_confirmation, autocomplete: "off"
+
+      .form-group
+        = f.label :current_password, class: "col-sm-2 control-label", style: "padding-top: 0px;"
+        .col-sm-10
+          = f.password_field :current_password, autocomplete: "off"
+        i we need your current password to confirm your changes
+
+      div
+        = f.submit "Update", class: "btn btn-success"
+
+    br
+    h4 style="color: #B32940;" Do you want to delete your account?
+
+    div
+      = button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-success delete_btn" 
+      = link_to "Cancel", :back, class: "btn btn-default"
