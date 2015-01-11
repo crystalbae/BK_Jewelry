@@ -1,12 +1,16 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    if params[:category]
+      category = Product.categories[params[:category]]
+      @products = Product.where(category: category)   
+    else
+      @products = Product.all
+    end
+    # @categories = Category.all
   end
-
   # GET /products/1
   # GET /products/1.json
   def show
@@ -62,7 +66,6 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
     end
