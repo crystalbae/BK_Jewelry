@@ -31,10 +31,5 @@ p#notice
         |   상세설명
       dd = @product.explanation
     br
-    .pull-right
-      = link_to 'Edit', edit_product_path(@product)
-      |  | 
-      = link_to 'Back', products_path  
-    / form action="/boards/new" method="post" enctype="multipart/form-data"
-    /   input type="hidden" name="item" value=@jewelry.title
-    /     button.btn.btn-default.btn-sm.pull-right 문의하기
+    = link_to '목록보기', :back, class: "btn btn-default btn-sm pull-right"
+    = link_to '문의하기', "/asks/new?product_id=#{@product.id}", class: "btn btn-default btn-sm pull-right"

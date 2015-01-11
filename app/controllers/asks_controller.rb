@@ -14,7 +14,9 @@ class AsksController < ApplicationController
 
   # GET /asks/new
   def new
+    @product = Product.find_by_id(params[:product_id])
     @ask = Ask.new
+    @ask.model = @product.name if @product.present?
   end
 
   # GET /asks/1/edit
@@ -25,6 +27,9 @@ class AsksController < ApplicationController
   # POST /asks.json
   def create
     @ask = Ask.new(ask_params)
+    @ask.writer = current_user.username
+    @ask.email = current_user.email
+    @ask.model = params[:model]
 
     respond_to do |format|
       if @ask.save

@@ -1,0 +1,28 @@
+.panel.panel-default.container style="width: 600px"
+  / p#notice
+  /   = notice
+  .panel-heading 
+    h3.panel-title 
+      = @ask.title
+  ul.list-group
+    li.list-group-item
+      span style="font-style: italic"
+        | 제품명: 
+        = @ask.model
+  ul.list-group
+    li.list-group-item
+      br
+      = @ask.content
+      br
+      br
+.container style="width: 600px"
+  - if current_user.email == @ask.email || current_user.email == "admin@naver.com"
+    div.pull-right
+      = link_to 'Edit', edit_ask_path(@ask)
+      |  |
+      = link_to 'Destroy', @ask, method: :delete, data: { confirm: 'Are you sure?' }
+      |  |
+      = link_to 'Back', asks_path
+  - else
+      div.pull-right
+        = link_to 'Back', asks_path
