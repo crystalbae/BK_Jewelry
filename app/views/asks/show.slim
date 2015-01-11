@@ -6,9 +6,11 @@
       = @ask.title
   ul.list-group
     li.list-group-item
-      span style="font-style: italic"
-        | 제품명: 
-        = @ask.model
+      a href="/products/#{@product.id}"
+        span style="font-style: italic"
+          = image_tag(@product.image, :size => "40x40")
+          | 제품명: 
+          = @product.name
   ul.list-group
     li.list-group-item
       br

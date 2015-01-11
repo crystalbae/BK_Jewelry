@@ -14,13 +14,13 @@
           td.ask_no
             = ask.id
           / td.ask_image
-          /   = image_tag(ask.image, :size => "40x40")
+          /   = image_tag(@product.image, :size => "40x40")
           td.ask_title
             = link_to ask.title, ask
           td.ask_writer 
             = ask.writer
-  / .page
-  /   = paginate @asks
+  .page
+    = paginate @asks
 
   div.pull-right
     button.btn.btn-default.btn-sm

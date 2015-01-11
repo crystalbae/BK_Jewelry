@@ -13,4 +13,5 @@
 #
 
 class Ask < ActiveRecord::Base
+  belongs_to :product
 end

@@ -10,7 +10,7 @@
         li
           = message
 
-  input type="hidden" name="model" value=@ask.model
+  input type="hidden" name="product_id" value="#{@product.id}"        
 
   .form-group
     label Title
@@ -18,7 +18,7 @@
 
   .form-group
     label Model:
-    = @ask.model
+    = @product.name
   
   .form-group
     label Content

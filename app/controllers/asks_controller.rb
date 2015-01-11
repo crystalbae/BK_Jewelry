@@ -1,22 +1,25 @@
 class AsksController < ApplicationController
   before_action :set_ask, only: [:show, :edit, :update, :destroy]
+  # before_action :set_product
 
   # GET /asks
   # GET /asks.json
   def index
     @asks = Ask.all
+    @asks = Ask.order("asks.updated_at").page(params[:page]).per(5)
+    # @product = Product.find_by_id(ask.product_id)
   end
 
   # GET /asks/1
   # GET /asks/1.json
   def show
+    @product = Product.find_by_id(@ask.product_id)
   end
 
   # GET /asks/new
   def new
-    @product = Product.find_by_id(params[:product_id])
     @ask = Ask.new
-    @ask.model = @product.name if @product.present?
+    @product = Product.find_by_id(params[:product_id])
   end
 
   # GET /asks/1/edit
@@ -29,7 +32,7 @@ class AsksController < ApplicationController
     @ask = Ask.new(ask_params)
     @ask.writer = current_user.username
     @ask.email = current_user.email
-    @ask.model = params[:model]
+    @ask.product_id = params[:product_id]
 
     respond_to do |format|
       if @ask.save
@@ -72,8 +75,12 @@ class AsksController < ApplicationController
       @ask = Ask.find(params[:id])
     end
 
+    def set_product
+      @product = Product.find_by_id(@ask.product_id)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def ask_params
-      params.require(:ask).permit(:title, :content, :writer, :model)
+      params.require(:ask).permit(:title, :content, :writer, :product_id, :email)
     end
 end
