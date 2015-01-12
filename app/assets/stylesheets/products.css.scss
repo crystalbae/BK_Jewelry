@@ -1,3 +1,49 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.detail_page {
+  width: 90%;
+  margin-left: 5%;
+
+  .container {
+    width: 100%;
+    padding: 0px;
+  }
+
+  .details {
+  text-align: left;
+  padding-top: 20px;
+  }
+
+  .detail_img {
+    text-align: center;
+  }
+
+  blockquote {
+    margin-bottom: 0px;
+  }
+
+  .table {
+    width: 100%;
+
+    .ask_no {
+      width: 100px;
+      text-align: center;
+    }
+
+    .ask_title {
+      text-align: left;
+    }
+
+    .ask_writer {
+      width: 150px;
+      text-align: center;
+    }
+
+    .ask_date {
+      width: 150px;
+      text-align: center;
+    }
+  }
+}

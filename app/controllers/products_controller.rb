@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @asks = Ask.where(product_id: @product.id)
   end
 
   # GET /products/new
@@ -68,6 +69,10 @@ class ProductsController < ApplicationController
   private
     def set_product
       @product = Product.find(params[:id])
+    end
+
+    def set_ask
+      @ask = Ask.find_by_id(@product.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
