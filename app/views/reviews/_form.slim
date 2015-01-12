@@ -10,6 +10,8 @@
         li
           = message
 
+  input type="hidden" name="product_id" value="#{@product.id}"
+
   .form-group
     label Title
     = f.text_field :title, class: "form-control"

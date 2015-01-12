@@ -10,13 +10,13 @@
     = @review.content
     br
     br
-    - if current_user.email == @review.email || current_user.email == "admin@naver.com"
+    - if current_user.nil? || current_user.email != @review.email
+        div.pull-right
+          = link_to 'list', reviews_path
+    - elsif current_user.email == @review.email || current_user.email == "admin@naver.com"
         div.pull-right
           = link_to 'Edit', edit_review_path(@review)
           |  |
           = link_to 'Destroy', @review, method: :delete, data: { confirm: 'Are you sure?' }
           |  |
-          = link_to 'Back', reviews_path
-    - else
-        div.pull-right
-          = link_to 'Back', reviews_path
+          = link_to 'list', reviews_path

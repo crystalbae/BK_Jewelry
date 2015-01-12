@@ -18,13 +18,13 @@
       br
       br
 .container style="width: 600px"
-  - if current_user.email == @ask.email || current_user.email == "admin@naver.com"
-    div.pull-right
-      = link_to 'Edit', edit_ask_path(@ask)
-      |  |
-      = link_to 'Destroy', @ask, method: :delete, data: { confirm: 'Are you sure?' }
-      |  |
-      = link_to 'Back', asks_path
-  - else
+  - if current_user.nil? || current_user.email != @ask.email
       div.pull-right
-        = link_to 'Back', asks_path
+        = link_to 'list', asks_path
+  - elsif current_user.email == @ask.email || current_user.email == "admin@naver.com"
+      div.pull-right
+        = link_to 'Edit', edit_ask_path(@ask)
+        |  |
+        = link_to 'Destroy', @ask, method: :delete, data: { confirm: 'Are you sure?' }
+        |  |
+        = link_to 'list', asks_path

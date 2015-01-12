@@ -16,10 +16,12 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   def new
     @review = Review.new
+    @product = Product.find_by_id(params[:product_id])
   end
 
   # GET /reviews/1/edit
   def edit
+    @product = Product.find_by_id(@review.product_id)
   end
 
   # POST /reviews
@@ -28,6 +30,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.writer = current_user.username
     @review.email = current_user.email
+    @review.product_id = params[:product_id]
 
     respond_to do |format|
       if @review.save
@@ -68,6 +71,10 @@ class ReviewsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
+    end
+
+    def set_product
+      @product = Product.find_by_id(@ask.product_id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

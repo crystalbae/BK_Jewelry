@@ -5,6 +5,7 @@
         th no
         th title
         th name
+        th date
 
     tbody
       - @reviews.reverse.each do |review|
@@ -15,6 +16,8 @@
             = link_to review.title, review
           td.review_writer 
             = review.writer
+          td.review_date
+            = review.created_at.strftime("%Y/%m/%d")
   / .page
   /   = paginate @reviews
 

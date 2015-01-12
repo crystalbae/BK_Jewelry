@@ -39,7 +39,7 @@ p#notice
   blockquote
     label Q&A
     footer  
-      cite title="Source Title" 상품에 대해 궁금한 점이 있으시면 문의해 주세요
+      cite title="Source Title" 상품에 대해 궁금한 점이 있으시면 문의해주세요
   table.table
     thead
       tr
@@ -50,18 +50,54 @@ p#notice
         / th colspan="3"
 
     tbody
-      - @asks.reverse.each do |ask|
-        tr
-          td.ask_no
-            = ask.id
-          / td.ask_image
-          /   = image_tag(@product.image, :size => "40x40")
-          td.ask_title
-            = link_to ask.title, ask
-          td.ask_writer 
-            = ask.writer
-          td.ask_date
-            = ask.created_at.strftime("%Y/%m/%d")
+      - if !@asks.nil?
+        - @asks.reverse.each do |ask|
+          tr
+            td.no
+              = ask.id
+            / td.image
+            /   = image_tag(@product.image, :size => "40x40")
+            td.title
+              = link_to ask.title, ask
+            td.writer 
+              = ask.writer
+            td.date
+              = ask.created_at.strftime("%Y/%m/%d")
+  .page
+    = paginate @asks
 
   = link_to '문의하기', "/asks/new?product_id=#{@product.id}", class: "btn btn-default btn-sm pull-right"
+
+  br
+  blockquote
+    label REVIEW
+    footer  
+      cite title="Source Title" 구매하신 상품의 후기를 남겨주세요
+  table.table
+    thead
+      tr
+        th no
+        th title
+        th name
+        th date
+        / th colspan="3"
+
+    tbody
+      - if !@reviews.nil?
+        - @reviews.reverse.each do |review|
+          tr
+            td.no
+              = review.id
+            / td.image
+            /   = image_tag(@product.image, :size => "40x40")
+            td.title
+              = link_to review.title, review
+            td.writer 
+              = review.writer
+            td.date
+              = review.created_at.strftime("%Y/%m/%d")
+  .page
+    = paginate @reviews
+
+  = link_to '후기 남기기', "/reviews/new?product_id=#{@product.id}", class: "btn btn-default btn-sm pull-right"
 

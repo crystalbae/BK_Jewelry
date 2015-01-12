@@ -6,7 +6,7 @@ class AsksController < ApplicationController
   # GET /asks.json
   def index
     @asks = Ask.all
-    @asks = Ask.order("asks.updated_at").page(params[:page]).per(5)
+    @asks = Ask.order("asks.created_at").page(params[:page]).per(10)
     # @product = Product.find_by_id(ask.product_id)
   end
 
@@ -24,6 +24,7 @@ class AsksController < ApplicationController
 
   # GET /asks/1/edit
   def edit
+    @product = Product.find_by_id(@ask.product_id)
   end
 
   # POST /asks

@@ -14,7 +14,8 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @asks = Ask.where(product_id: @product.id)
+    @asks = Ask.where(product_id: @product.id).order("asks.created_at").page(params[:page]).per(5)
+    @reviews = Review.where(product_id: @product.id).order("reviews.created_at").page(params[:page]).per(5)
   end
 
   # GET /products/new
