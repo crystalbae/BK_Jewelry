@@ -1,16 +1,18 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new]
 
   # GET /reviews
   # GET /reviews.json
   def index
     @reviews = Review.all
-    @reviews = Review.order("reviews.updated_at").page(params[:page]).per(5)
+    @reviews = Review.order("created_at desc").page(params[:page]).per(5)
   end
 
   # GET /reviews/1
   # GET /reviews/1.json
   def show
+    @product = Product.find_by_id(@review.product_id)
   end
 
   # GET /reviews/new

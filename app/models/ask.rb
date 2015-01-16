@@ -10,8 +10,10 @@
 #  updated_at :datetime
 #  email      :string(255)
 #  product_id :integer
+#  password   :string(255)
 #
 
 class Ask < ActiveRecord::Base
   belongs_to :product
+  has_many :comments, :as => :commentable
 end

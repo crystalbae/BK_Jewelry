@@ -1,6 +1,4 @@
-p#notice
-  = notice
-
+br
 .row.container.detail_page
   .container
     .detail_img.col-md-5
@@ -31,9 +29,8 @@ p#notice
           i.fa.fa-caret-right
           |   상세설명
         dd = @product.explanation
-      br
-    
-    = link_to '목록보기', :back, class: "btn btn-default btn-sm pull-right"
+      br  
+  = link_to '목록보기', :back, class: "btn btn-default btn-sm pull-right"
   br
   br
   blockquote

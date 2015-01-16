@@ -2,6 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.col-md-3 {
+  .thumbnail {
+    margin-bottom: 0px;
+  }
+
+  .product_preview {
+    text-align: center;
+  }
+}
+
 .detail_page {
   width: 90%;
   margin-left: 5%;
@@ -24,7 +34,7 @@
     margin-bottom: 0px;
   }
 
-  .table {
+  table {
     width: 100%;
 
     .no {

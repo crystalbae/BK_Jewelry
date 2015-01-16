@@ -1,4 +1,8 @@
-.container style="width: 600px"
+.container.board
+  blockquote
+    label Q&A
+    footer  
+      cite title="Source Title" 상품에 대해 궁금한 점이 있으시면 문의해주세요
   table.table
     thead
       tr
@@ -9,17 +13,20 @@
         / th colspan="3"
 
     tbody
-      - @asks.reverse.each do |ask|
+      - @asks.each do |ask|
         tr
-          td.ask_no
+          td.no
             = ask.id
-          / td.ask_image
+          / td.image
           /   = image_tag(@product.image, :size => "40x40")
-          td.ask_title
-            = link_to ask.title, ask
-          td.ask_writer 
+          td.title
+            i.fa.fa-lock
+            |   
+            a href="/asks/#{ask.id}/password" 
+              = ask.title
+          td.writer 
             = ask.writer
-          td.ask_date
+          td.date
             = ask.created_at.strftime("%Y/%m/%d")
 
   .page

@@ -6,24 +6,39 @@
   text-align: center;
 }
 
+.panel {
+  margin-bottom: 5px;
+
+  .edit {
+    font-size: 13px; 
+    color: grey;
+  } 
+}
+
 table {
   th {
     text-align: center;
   }
 
-  .ask_no {
-    width: 40px;
+  .no {
+    width: 80px;
     text-align: center;
   }
 
-  .ask_title {
-    width: 600px;
+  .title {
+    width: 420px;
     text-align: center;
   }
 
-  .ask_name {
-    width: 100px;
+  .writer {
+    width: 150px;
     text-align: center;
   }
 
+  .date {
+    width: 150px;
+    text-align: center;
+  }
 }
+
+

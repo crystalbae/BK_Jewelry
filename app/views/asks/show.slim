@@ -1,30 +1,32 @@
-.panel.panel-default.container style="width: 600px"
-  / p#notice
-  /   = notice
-  .panel-heading 
-    h3.panel-title 
-      = @ask.title
-  ul.list-group
-    li.list-group-item
-      a href="/products/#{@product.id}"
-        span style="font-style: italic"
-          = image_tag(@product.image, :size => "40x40")
-          | 제품명: 
-          = @product.name
-  ul.list-group
-    li.list-group-item
-      br
-      = @ask.content
-      br
-      br
-.container style="width: 600px"
-  - if current_user.nil? || current_user.email != @ask.email
-      div.pull-right
-        = link_to 'list', asks_path
-  - elsif current_user.email == @ask.email || current_user.email == "admin@naver.com"
-      div.pull-right
-        = link_to 'Edit', edit_ask_path(@ask)
-        |  |
-        = link_to 'Destroy', @ask, method: :delete, data: { confirm: 'Are you sure?' }
-        |  |
-        = link_to 'list', asks_path
+.container.board
+  .panel.panel-default
+    / p#notice
+    /   = notice
+    .panel-heading 
+      h4.panel-title 
+        = @ask.title
+        - if current_user.nil? || current_user.email != @ask.email
+        - elsif current_user.email == @ask.email || current_user.email == "admin@naver.com"
+            .pull-right.edit
+              = link_to '수정', edit_ask_path(@ask)
+              |  | 
+              = link_to '삭제', @ask, method: :delete, data: { confirm: 'Are you sure?' }
+      
+    - if @product.present?
+        ul.list-group
+          li.list-group-item
+            a href="/products/#{@product.id}"
+              span style="font-style: italic"
+                = image_tag(@product.image, :size => "40x40")
+                | 제품명: 
+                = @product.name
+    ul.list-group
+      li.list-group-item
+        br
+        = @ask.content
+        br
+        br
+
+  = link_to '목록', asks_path, class: "btn btn-default btn-sm pull-right"
+br
+br

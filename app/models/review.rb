@@ -16,4 +16,5 @@
 class Review < ActiveRecord::Base
   mount_uploader :image, AvatarUploader
   belongs_to :product
+  has_many :comments, :as => :commentable
 end

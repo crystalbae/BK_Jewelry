@@ -1,4 +1,8 @@
-.container style="width: 600px"
+.container.board
+  blockquote
+    label REVIEW
+    footer  
+      cite title="Source Title" 구매하신 상품의 후기를 남겨주세요
   table.table
     thead
       tr
@@ -8,18 +12,25 @@
         th date
 
     tbody
-      - @reviews.reverse.each do |review|
+      - @reviews.each do |review|
         tr
-          td.review_no
+          td.no
             = review.id
-          td.review_title
-            = link_to review.title, review
-          td.review_writer 
+          td.title
+            - if !review.image.present?
+                i.fa.fa-file-text-o
+                |  
+                = link_to review.title, review
+            - else
+                i.fa.fa-file-image-o
+                |     
+                = link_to review.title, review
+          td.writer 
             = review.writer
-          td.review_date
+          td.date
             = review.created_at.strftime("%Y/%m/%d")
-  / .page
-  /   = paginate @reviews
+  .page
+    = paginate @reviews
 
   div.pull-right
     button.btn.btn-default.btn-sm

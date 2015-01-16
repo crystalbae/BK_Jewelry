@@ -2,24 +2,32 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.page {
+  text-align: center;
+}
+
 table {
   th {
     text-align: center;
   }
 
-  .review_no {
-    width: 40px;
+  .no {
+    width: 80px;
     text-align: center;
   }
 
-  .review_title {
-    width: 600px;
+  .title {
+    width: 420px;
+    text-align: left;
+  }
+
+  .writer {
+    width: 150px;
     text-align: center;
   }
 
-  .review_name {
-    width: 100px;
+  .date {
+    width: 150px;
     text-align: center;
   }
-
 }

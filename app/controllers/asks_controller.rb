@@ -1,17 +1,32 @@
 class AsksController < ApplicationController
   before_action :set_ask, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new]
   # before_action :set_product
 
   # GET /asks
   # GET /asks.json
   def index
     @asks = Ask.all
-    @asks = Ask.order("asks.created_at").page(params[:page]).per(10)
+    @asks = Ask.order("created_at desc").page(params[:page]).per(5)
     # @product = Product.find_by_id(ask.product_id)
   end
 
   # GET /asks/1
   # GET /asks/1.json
+
+  def password
+    @ask = Ask.find_by_id(params[:id])
+  end
+
+  def password_confirm
+    @ask = Ask.find_by_id(params[:id])
+    if @ask.password == params[:password]
+      redirect_to @ask
+    else 
+      redirect_to :back
+    end
+  end
+
   def show
     @product = Product.find_by_id(@ask.product_id)
   end
@@ -82,6 +97,6 @@ class AsksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ask_params
-      params.require(:ask).permit(:title, :content, :writer, :product_id, :email)
+      params.require(:ask).permit(:title, :content, :writer, :product_id, :email, :password)
     end
 end

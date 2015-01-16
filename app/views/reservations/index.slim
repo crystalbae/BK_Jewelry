@@ -1,0 +1,38 @@
+.container.board
+  blockquote
+    label RESERVATION
+    footer  
+      cite title="Source Title" 
+        | 매장에 방문하고 싶으신 
+        span style="color: red; text-decoration: underline;" 날짜, 시간 / 관심 상품 / 성함, 연락처
+        | 를 적어주세요.
+  table.table
+    thead
+      tr
+        th no
+        th title
+        th name
+        th date
+        / th colspan="3"
+
+    tbody
+      - @reservations.each do |reservation|
+        tr
+          td.no
+            = reservation.id
+          td.title
+            i.fa.fa-lock
+            |   
+            a href="/reservations/#{reservation.id}/password" 
+              = reservation.title
+          td.writer 
+            = reservation.writer
+          td.date
+            = reservation.created_at.strftime("%Y/%m/%d")
+  .page
+    = paginate @reservations
+
+  div.pull-right
+    button.btn.btn-default.btn-sm
+      i.fa.fa-pencil
+      = link_to ' Write', new_reservation_path

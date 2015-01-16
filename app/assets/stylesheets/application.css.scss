@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+body {
+  background-color: white;
+}
 
 #font {
   color: grey;
@@ -21,4 +24,13 @@
 .login_box {
   text-align: right;
   padding: 5px;
+}
+
+.board {
+  width: 800px;
+}
+
+.board.password {
+  margin-top: 80px;
+  text-align: center;
 }

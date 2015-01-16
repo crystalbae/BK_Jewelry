@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111165000) do
+ActiveRecord::Schema.define(version: 20150116043242) do
 
   create_table "asks", force: true do |t|
     t.string   "title"
@@ -21,10 +21,20 @@ ActiveRecord::Schema.define(version: 20150111165000) do
     t.datetime "updated_at"
     t.string   "email"
     t.integer  "product_id"
+    t.string   "password"
   end
 
   create_table "categories", force: true do |t|
     t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", force: true do |t|
+    t.text     "content"
+    t.string   "writer"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,6 +46,16 @@ ActiveRecord::Schema.define(version: 20150111165000) do
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "reservations", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "writer"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password"
   end
 
   create_table "reviews", force: true do |t|

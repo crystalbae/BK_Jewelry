@@ -10,19 +10,37 @@
         li
           = message
 
-  input type="hidden" name="product_id" value="#{@product.id}"        
+  - if @product.nil?
+      .form-group
+        label Title
+        = f.text_field :title, class: "form-control", placeholder: "ex) 상품 문의합니다, 배송 문의합니다 등등.."
+      
+      .form-group
+        label Content
+        = f.text_area :content, class: "form-control", rows: 7, placeholder: "궁금하신 사항들을 적어주세요."
 
-  .form-group
-    label Title
-    = f.text_field :title, class: "form-control"
+      .form-group
+        label Password
+        = f.password_field :password, class: "form-control", :required => true
 
-  .form-group
-    label Model:
-    = @product.name
-  
-  .form-group
-    label Content
-    = f.text_area :content, class: "form-control", rows: 7
+  - else
+      input type="hidden" name="product_id" value="#{@product.id}"
+
+      .form-group
+        label Title
+        = f.text_field :title, class: "form-control", placeholder: "ex) 상품 문의합니다, 배송 문의합니다 등등.."
+
+      .form-group
+        label Model:
+        = @product.name
+      
+      .form-group
+        label Content
+        = f.text_area :content, class: "form-control", rows: 7, placeholder: "궁금하신 사항들을 적어주세요."
+
+      .form-group
+        label Password
+        = f.password_field :password, class: "form-control", :required => true
 
   div.pull-right
     button.btn.btn-default.btn-sm type="submit" 완료

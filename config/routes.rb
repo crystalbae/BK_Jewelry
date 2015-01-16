@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  resources :comments
+
+  resources :reservations 
 
   resources :reviews
 
-  devise_for :users
-  resources :asks
+  resources :asks do
+    resources :comments
+  end
 
   resources :products
 
@@ -13,6 +19,12 @@ Rails.application.routes.draw do
     get :parking
     get :transfer
   end
+
+  get 'asks/:id/password' => 'asks#password'
+  post 'asks/password_confirm'
+
+  get 'reservations/:id/password' => 'reservations#password'
+  post 'reservations/password_confirm'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

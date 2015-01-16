@@ -1,0 +1,26 @@
+= form_for(@reservation) do |f|
+  - if @reservation.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@reservation.errors.count, "error")
+        | prohibited this reservation from being saved:
+
+      ul
+      - @reservation.errors.full_messages.each do |message|
+        li
+          = message
+
+  .form-group
+    label Title
+    = f.text_field :title, class: "form-control", placeholder: "ex) 방문예약 신청합니다."
+  
+  .form-group
+    label Content
+    = f.text_area :content, class: "form-control", rows: 7, placeholder: "매장에 방문하고 싶으신 날짜, 시간 / 관심 상품 / 성함, 연락처를 함께 적어주세요."
+  .form-group
+    label Password
+    = f.password_field :password, class: "form-control", :required => true
+
+  div.pull-right
+    button.btn.btn-default.btn-sm type="submit" 완료
+

@@ -1,12 +1,22 @@
 .row.container
-  = link_to 'New Product', new_product_path
-  br
-  br
-  - @products.each do |product|
-    .col-sm-6.col-md-3
-      .thumbnail
-        = link_to( image_tag( product.image.thumb ), product )
-      .pull-right
-        = link_to 'Edit', edit_product_path(product)
-        |  |  
-        = link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
+  - if current_user.nil? || current_user.email != "admin@naver.com"
+      - @products.each do |product|
+        .col-md-3
+          .thumbnail
+            = link_to( image_tag( product.image.products_thumb ), product )
+          .product_preview
+            = product.name
+          br
+          br
+  - elsif current_user.email == "admin@naver.com"
+      = link_to 'New Product', new_product_path
+      br
+      br
+      - @products.each do |product|
+        .col-md-3
+          .thumbnail
+            = link_to( image_tag( product.image.products_thumb ), product )
+          .pull-right
+            = link_to 'Edit', edit_product_path(product)
+            |  |  
+            = link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }

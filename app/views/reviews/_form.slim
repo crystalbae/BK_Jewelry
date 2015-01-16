@@ -10,19 +10,37 @@
         li
           = message
 
-  input type="hidden" name="product_id" value="#{@product.id}"
+  - if @product.nil?
+      .form-group
+        label Title
+        = f.text_field :title, class: "form-control"
+      
+      .form-group
+        label Content
+        = f.text_area :content, class: "form-control", rows: 7
 
-  .form-group
-    label Title
-    = f.text_field :title, class: "form-control"
-  
-  .form-group
-    label Content
-    = f.text_area :content, class: "form-control", rows: 7
+      .form-group
+        label Image Upload 
+        = f.file_field :image
 
-  .form-group
-    label Image Upload 
-    = f.file_field :image
+  - else
+      input type="hidden" name="product_id" value="#{@product.id}"
+
+      .form-group
+        label Title
+        = f.text_field :title, class: "form-control"
+
+      .form-group
+        label Model:
+        = @product.name
+      
+      .form-group
+        label Content
+        = f.text_area :content, class: "form-control", rows: 7
+
+      .form-group
+        label Image Upload 
+        = f.file_field :image
 
   div.pull-right
     button.btn.btn-success.btn-sm type="submit" 완료
