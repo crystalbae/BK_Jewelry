@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get 'asks/:id/password' => 'asks#password'
   post 'asks/password_confirm'
+  post 'asks/add_new_comment'
 
   get 'reservations/:id/password' => 'reservations#password'
   post 'reservations/password_confirm'

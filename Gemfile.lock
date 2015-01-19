@@ -27,6 +27,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts_as_commentable (4.0.2)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -39,6 +40,8 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
+    bootswatch-rails (3.2.4)
+      railties (>= 3.1)
     builder (3.2.2)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -143,10 +146,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_commentable
   annotate
   better_errors
   binding_of_caller
   bootstrap-sass
+  bootswatch-rails
   carrierwave
   coffee-rails (~> 4.0.0)
   devise

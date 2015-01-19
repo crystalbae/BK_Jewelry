@@ -76,7 +76,7 @@ class ReviewsController < ApplicationController
     end
 
     def set_product
-      @product = Product.find_by_id(@ask.product_id)
+      @product = Product.find_by_id(@review.product_id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

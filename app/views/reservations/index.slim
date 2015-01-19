@@ -21,10 +21,13 @@
           td.no
             = reservation.id
           td.title
-            i.fa.fa-lock
-            |   
-            a href="/reservations/#{reservation.id}/password" 
-              = reservation.title
+            - if current_user.nil? || current_user.email != "admin@naver.com"
+                i.fa.fa-lock
+                |   
+                a href="/reservations/#{reservation.id}/password" 
+                  = reservation.title
+            - else
+                = link_to reservation.title, reservation
           td.writer 
             = reservation.writer
           td.date

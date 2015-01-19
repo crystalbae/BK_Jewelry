@@ -15,5 +15,5 @@
 
 class Ask < ActiveRecord::Base
   belongs_to :product
-  has_many :comments, :as => :commentable
+  acts_as_commentable
 end

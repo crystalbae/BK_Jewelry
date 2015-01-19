@@ -3,12 +3,13 @@
     .panel-heading 
       h4.panel-title 
         = @review.title
-        - if current_user.nil? || current_user.email != @review.email
+        - if current_user.nil?
         - elsif current_user.email == @review.email || current_user.email == "admin@naver.com"
             .pull-right.edit
               = link_to '수정', edit_review_path(@review)
               |  | 
               = link_to '삭제', @review, method: :delete, data: { confirm: 'Are you sure?' }
+        - else
         
     - if @product.present?
         ul.list-group

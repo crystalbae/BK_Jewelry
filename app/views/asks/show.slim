@@ -3,14 +3,15 @@
     / p#notice
     /   = notice
     .panel-heading 
-      h4.panel-title 
+      h4.panel-title
         = @ask.title
-        - if current_user.nil? || current_user.email != @ask.email
+        - if current_user.nil?
         - elsif current_user.email == @ask.email || current_user.email == "admin@naver.com"
             .pull-right.edit
               = link_to '수정', edit_ask_path(@ask)
               |  | 
               = link_to '삭제', @ask, method: :delete, data: { confirm: 'Are you sure?' }
+        - else
       
     - if @product.present?
         ul.list-group
@@ -26,7 +27,23 @@
         = @ask.content
         br
         br
+  .well.well-sm
+    form action="/asks/add_new_comment" method="post" 
+      input type="hidden" name="id" value=@ask.id 
+      input type="hidden" name="comment[writer]" value=current_user.username
+      div
+        input.form-control name="comment[content]" placeholder="댓글을 입력하세요..." type="text"
+      br
+      - @ask.comments.each do |comment|
+        .comment
+          span.comment_writer = comment.writer
+          span &nbsp;
+          span.comment_content = comment.content
+          span.comment_edit.pull-right = link_to "삭제", comment, method: :delete, data: { confirm: 'Are you sure?' }
+          span.comment_time.pull-right = comment.created_at.strftime("%Y/%m/%d")
 
   = link_to '목록', asks_path, class: "btn btn-default btn-sm pull-right"
-br
-br
+
+
+
+

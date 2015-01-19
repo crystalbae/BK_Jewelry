@@ -8,7 +8,6 @@ class AsksController < ApplicationController
   def index
     @asks = Ask.all
     @asks = Ask.order("created_at desc").page(params[:page]).per(5)
-    # @product = Product.find_by_id(ask.product_id)
   end
 
   # GET /asks/1
@@ -25,6 +24,12 @@ class AsksController < ApplicationController
     else 
       redirect_to :back
     end
+  end
+
+  def add_new_comment
+    ask = Ask.find(params[:id])
+    ask.comments << Comment.new(comment_params)
+    redirect_to :action => :show, :id => ask
   end
 
   def show
@@ -93,6 +98,10 @@ class AsksController < ApplicationController
 
     def set_product
       @product = Product.find_by_id(@ask.product_id)
+    end
+
+    def comment_params
+      params.require(:comment).permit(:content, :writer)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

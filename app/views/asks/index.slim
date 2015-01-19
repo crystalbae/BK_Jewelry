@@ -20,10 +20,16 @@
           / td.image
           /   = image_tag(@product.image, :size => "40x40")
           td.title
-            i.fa.fa-lock
-            |   
-            a href="/asks/#{ask.id}/password" 
-              = ask.title
+            - if current_user.nil? || current_user.email != "admin@naver.com"
+                i.fa.fa-lock
+                |   
+                a href="/asks/#{ask.id}/password" 
+                  = ask.title
+            - else
+                = link_to ask.title, ask
+                |  (
+                = ask.comments.length
+                | )
           td.writer 
             = ask.writer
           td.date
