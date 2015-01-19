@@ -26,6 +26,22 @@
         = @review.content
         br
         br
+  .well.well-sm
+    - if !current_user.nil?
+        form action="/reviews/add_new_comment" method="post" 
+          input type="hidden" name="id" value=@review.id 
+          input type="hidden" name="comment[writer]" value=current_user.username
+          div
+            input.form-control name="comment[content]" placeholder="댓글을 입력하세요..." type="text"
+          br
+    - @review.comments.each do |comment|
+      .comment
+        span.comment_writer = comment.writer
+        span.comment_content = comment.content
+        span.comment_time.pull-right = comment.created_at.strftime("%Y/%m/%d")
+        - if current_user.nil?
+        - elsif current_user.username == comment.writer
+            span.comment_edit.pull-right = link_to "삭제", comment, method: :delete, data: { confirm: 'Are you sure?' }
 
   = link_to '목록', reviews_path, class: "btn btn-default btn-sm pull-right"
 br

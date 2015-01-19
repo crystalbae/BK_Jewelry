@@ -25,6 +25,9 @@
                 |   
                 a href="/asks/#{ask.id}/password" 
                   = ask.title
+                  |  (
+                  = ask.comments.length
+                  | )
             - else
                 = link_to ask.title, ask
                 |  (

@@ -26,8 +26,14 @@
                 |   
                 a href="/reservations/#{reservation.id}/password" 
                   = reservation.title
+                  |  (
+                  = reservation.comments.length
+                  | )
             - else
                 = link_to reservation.title, reservation
+                |  (
+                = reservation.comments.length
+                | )
           td.writer 
             = reservation.writer
           td.date

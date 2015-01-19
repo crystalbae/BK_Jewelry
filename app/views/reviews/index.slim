@@ -21,10 +21,16 @@
                 i.fa.fa-file-text-o
                 |  
                 = link_to review.title, review
+                |  (
+                = review.comments.length
+                | )
             - else
                 i.fa.fa-file-image-o
                 |     
                 = link_to review.title, review
+                |  (
+                = review.comments.length
+                | )
           td.writer 
             = review.writer
           td.date

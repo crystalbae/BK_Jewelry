@@ -26,6 +26,9 @@ Rails.application.routes.draw do
 
   get 'reservations/:id/password' => 'reservations#password'
   post 'reservations/password_confirm'
+  post 'reservations/add_new_comment'
+
+  post 'reviews/add_new_comment'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -9,6 +9,12 @@ class ReviewsController < ApplicationController
     @reviews = Review.order("created_at desc").page(params[:page]).per(5)
   end
 
+  def add_new_comment
+    review = Review.find(params[:id])
+    review.comments << Comment.new(comment_params)
+    redirect_to :action => :show, :id => review
+  end
+
   # GET /reviews/1
   # GET /reviews/1.json
   def show
@@ -73,6 +79,10 @@ class ReviewsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
+    end
+
+    def comment_params
+      params.require(:comment).permit(:content, :writer)
     end
 
     def set_product

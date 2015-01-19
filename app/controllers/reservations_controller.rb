@@ -22,6 +22,12 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def add_new_comment
+    reservation = Reservation.find(params[:id])
+    reservation.comments << Comment.new(comment_params)
+    redirect_to :action => :show, :id => reservation
+  end
+
   # GET /reservations/1
   # GET /reservations/1.json
   def show
@@ -82,6 +88,10 @@ class ReservationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation
       @reservation = Reservation.find(params[:id])
+    end
+
+    def comment_params
+      params.require(:comment).permit(:content, :writer)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

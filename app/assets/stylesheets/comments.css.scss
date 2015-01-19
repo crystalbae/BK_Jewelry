@@ -6,15 +6,21 @@
   margin-bottom: 5px;
 
   .comment_writer {
-    padding: 10px;
+    padding: 5px;
+    color: MidnightBlue;
+    font-weight: bold;
   }
 
   .comment_content {
-    padding: 10px;
+    padding: 5px;
+    color: DimGrey;
   }
 
   .comment_time {
     color: grey;
+  }
+
+  .comment_edit {
     margin-right: 5px;
   }
 }
