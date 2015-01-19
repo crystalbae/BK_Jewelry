@@ -2,8 +2,8 @@
   .jumbotron
 
     h2 
-      |Edit 
-      = resource_name.to_s.humanize
+      cite
+        label 회원정보 수정
     br
 
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true, class: "form-horizontal" }) do |f| 
@@ -11,12 +11,12 @@
       = devise_error_messages! 
      
       .form-group
-        = f.label :username, class: "col-sm-2 control-label" 
+        = f.label :닉네임, class: "col-sm-2 control-label" 
         .col-sm-10
           = f.text_field :username, :autofocus => true 
 
       .form-group
-        = f.label :email, class: "col-sm-2 control-label" 
+        = f.label :이메일, class: "col-sm-2 control-label" 
         .col-sm-10
           = f.email_field :email, autofocus: true 
        
@@ -26,28 +26,29 @@
           = resource.unconfirmed_email
 
       .form-group
-        = f.label :password, class: "col-sm-2 control-label" 
+        = f.label :새_비밀번호, class: "col-sm-2 control-label" 
         .col-sm-10
           = f.password_field :password, autocomplete: "off"
-        i leave blank if you don't want to change it 
+        i 비밀번호 변경을 원하지 않으면 빈칸으로 남겨두세요 
 
       .form-group
-        = f.label :password_confirmation, class: "col-sm-2 control-label", style: "padding-top: 0px;"
+        = f.label :새_비밀번호_확인, class: "col-sm-2 control-label", style: "padding-top: 0px;"
         .col-sm-10
           = f.password_field :password_confirmation, autocomplete: "off"
 
       .form-group
-        = f.label :current_password, class: "col-sm-2 control-label", style: "padding-top: 0px;"
+        = f.label :현재_비밀번호, class: "col-sm-2 control-label", style: "padding-top: 0px;"
         .col-sm-10
           = f.password_field :current_password, autocomplete: "off"
-        i we need your current password to confirm your changes
+        i 변경사항들을 적용하려면 현재 비밀번호를 입력하세요
 
       div
-        = f.submit "Update", class: "btn btn-success"
+        = f.submit "정보 수정", class: "btn btn-success btn-sm"
 
     br
-    h4 style="color: #B32940;" Do you want to delete your account?
+    br
+    h4 style="color: #B32940;" 현재 계정을 삭제하시겠습니까?
 
     div
-      = button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-success delete_btn" 
-      = link_to "Cancel", :back, class: "btn btn-default"
+      = button_to "삭제", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-success delete_btn btn-sm" 
+      = link_to "취소", :back, class: "btn btn-default btn-sm"

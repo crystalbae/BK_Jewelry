@@ -1,5 +1,9 @@
 .row.container
   - if current_user.nil? || current_user.email != "admin@naver.com"
+      .product_length
+        = @products.length
+        |  
+        | items in this category
       - @products.each do |product|
         .col-md-3
           .thumbnail
