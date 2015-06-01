@@ -14,6 +14,10 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    product = Product.find(@product.id)
+    product.like += 1
+    product.save
+
     @asks = Ask.where(product_id: @product.id).order("asks.created_at").page(params[:page]).per(5)
     @reviews = Review.where(product_id: @product.id).order("reviews.created_at").page(params[:page]).per(5)
   end
@@ -78,6 +82,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:category, :name, :explanation, :image)
+      params.require(:product).permit(:category, :name, :explanation, :image, :price, :like)
     end
 end

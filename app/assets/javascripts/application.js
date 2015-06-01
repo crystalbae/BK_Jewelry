@@ -12,6 +12,42 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require dropdown.js
+// require turbolinks
+//= require masonry.pkgd.min.js
+//= require imagesloaded/imagesloaded
 //= require_tree .
+//= require bootstrap-material-design/dist/js/material
+//= require bootstrap-material-design/dist/js/ripples
+
+
+$(document).ready(function() {
+  $.material.init();
+
+  var container = document.querySelector('#container');
+  var msnry;
+  // initialize Masonry after all images have loaded
+  imagesLoaded( container, function() {
+    msnry = new Masonry( container );
+  });
+
+  $('.dropdown-toggle').mouseover(function() {
+    $('.dropdown-menu').show();
+  });
+
+  $('.dropdown-toggle').mouseout(function() {
+    t = setTimeout(function() {
+      $('.dropdown-menu').hide();
+    }, 100);
+
+    $('.dropdown-menu').on('mouseenter', function() {
+      $('.dropdown-menu').show();
+        clearTimeout(t);
+    }).on('mouseleave', function() {
+      $('.dropdown-menu').hide();
+    });
+    
+  });
+  
+
+});
+

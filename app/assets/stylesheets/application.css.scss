@@ -11,19 +11,56 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require bootstrap-material-design/dist/css/material
+ *= require bootstrap-material-design/dist/css/ripples
+ *= require bootstrap-material-design/dist/css/roboto
+ *= require bootstrap-material-design/dist/css/material-fullpalette
  *= require_self
  */
+
+html {
+  height: 100%;
+  position: relative;
+}
+
 body {
+  height: 100%;
   background-color: white;
+  padding-top: 90px;
+  position: relative;
+
+  .navbar-right {
+
+    margin-right: 0;
+
+    .login_box {
+      margin-right: 25px;
+      margin-top: 7%;
+      width: 250px;
+      font-weight: bold;
+      text-align: right;
+
+      a {
+        color: goldenrod;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    li:hover {
+      background-color: lightgrey;
+    }
+  }
 }
 
-#font {
-  color: grey;
+.main {
+  height: auto !important;
 }
 
-.login_box {
-  text-align: right;
-  padding: 5px;
+.footer {
+  position: absolute;
+  height: 200px;
+  bottom: 0;
 }
 
 .board {

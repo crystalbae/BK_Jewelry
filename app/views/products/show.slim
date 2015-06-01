@@ -1,35 +1,21 @@
-br
 .row.container.detail_page
   .container
-    .detail_img.col-md-5
-      = image_tag(@product.image, :size => "400x400")
-    .details.col-md-7
-      dl.dl-horizontal
-        dt 
-          i.fa.fa-caret-right
-          |  모델명
-        dd = @product.name
-        br
-        dt 
-          i.fa.fa-caret-right
-          |  분류
-        dd = @product.category
-        br
-        dt 
-          i.fa.fa-caret-right
-          |   제조사
-        dd dkjk
-        br
-        dt 
-          i.fa.fa-caret-right
-          |   판매가
-        dd 430,000원
-        br
-        dt 
-          i.fa.fa-caret-right
-          |   상세설명
-        dd = @product.explanation
-      br  
+    .detail_img.col-md-7
+      = image_tag(@product.image, :size => "600x500")
+    .details.col-md-5
+      | Jewelry >> 
+      = @product.category
+      .divider
+      h1 
+        strong = @product.name
+      .divider
+      | ₩ 
+      = number_with_delimiter(@product.price)
+      p = @product.explanation 
+      br
+      = link_to '♥', :controller => "products", :action => "show"
+      = @product.like
+      |  I love it!
   = link_to '목록보기', :back, class: "btn btn-default btn-sm pull-right"
   br
   br

@@ -4,23 +4,32 @@
         = @products.length
         |  
         | items in this category
-      - @products.each do |product|
-        .col-md-3
-          .thumbnail
+      #container.js-masonry data-masonry-options='{ "itemSelector": ".item" }'
+        - @products.each do |product|
+          .item.no_edit
             = link_to( image_tag( product.image.products_thumb ), product )
-          .product_preview
-            = product.name
+            .img_detail
+              h4
+                = product.name
+                br
+                | ₩
+                = number_with_delimiter(product.price)
           br
           br
   - elsif current_user.email == "admin@naver.com"
-      = link_to 'New Product', new_product_path
-      br
-      br
-      - @products.each do |product|
-        .col-md-3
-          .thumbnail
+      .product_length
+        = link_to 'New Product', new_product_path
+      #container.js-masonry data-masonry-options='{ "itemSelector": ".item" }'
+        - @products.each do |product|
+          .item
             = link_to( image_tag( product.image.products_thumb ), product )
-          .pull-right
-            = link_to 'Edit', edit_product_path(product)
-            |  |  
-            = link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
+            .img_detail
+              h4
+                = product.name
+                br
+                | ₩
+                = number_with_delimiter(product.price)
+            .edit_delete
+              = link_to 'Edit', edit_product_path(product)
+              |  |  
+              = link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }

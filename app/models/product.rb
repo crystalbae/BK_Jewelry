@@ -9,6 +9,8 @@
 #  image       :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  price       :integer
+#  like        :integer          default(0)
 #
 
 class Product < ActiveRecord::Base

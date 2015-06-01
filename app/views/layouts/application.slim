@@ -4,7 +4,7 @@ html
     title Bk
 
     script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"
-    / script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
+    script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
     link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet"
     link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"
 
@@ -12,62 +12,55 @@ html
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
-  body.container
-    .container.login_box
-      - if current_user.nil?
-      - elsif current_user.email == "admin@naver.com"
-        a href="/products/new" 
-          i.fa.fa-pencil
-          |  
-           
-      - if user_signed_in?
-        = link_to current_user.username, edit_user_registration_path
-        span#font 님 로그인 중 | 
-        = link_to "로그아웃", destroy_user_session_path, method: :delete
-      - else
-        = link_to "회원가입 | ", new_user_registration_path
-        = link_to "로그인", new_user_session_path
-    
-    h1.title BK Jewelry 
+  body
+    .main
+      .navbar.navbar-material-grey-900.navbar-fixed-top
+        .navbar-header.active
+          a.navbar-brand href="/products" BK Jewelry
 
-    ul.nav.nav-tabs
-      li.dropdown
-        a.dropdown-toggle data-toggle="dropdown" href="#" role="button" aria-expanded="true"
-          | ABOUT US
-          span.caret
-        ul.dropdown-menu role="menu" aria-labelledby="dropdownMenu1"
-          li role="presentation"
-            a role="menuitem" tabindex="-1" href="/introduces/index" 매장안내
-          li role="presentation"
-            a role="menuitem" tabindex="-1" href="/introduces/transfer" 오시는길
-          li role="presentation"
-            a role="menuitem" tabindex="-1" href="/introduces/parking" 주차안내
-          li role="presentation"
-            a role="menuitem" tabindex="-1" href="/introduces/information" 층별안내
-      li.dropdown
-        a.dropdown-toggle data-toggle="dropdown" href="#" role="button" aria-expanded="true"
-          | JEWELRY
-          span.caret
-        ul.dropdown-menu role="menu" aria-labelledby="dropdownMenu1"
-          li role="presentation"
-            a role="menuitem" tabindex="-1" href="/products" 전체보기
-          li role="presentation"
-            a role="menuitem" tabindex="-1" href="/products?category=wedding" Wedding
-          li role="presentation"
-            a role="menuitem" tabindex="-1" href="/products?category=propose" Propose
-          li role="presentation"
-            a role="menuitem" tabindex="-1" href="/products?category=ring" Ring
-          li role="presentation"
-            a role="menuitem" tabindex="-1" href="/products?category=necklace" Necklace
-          li role="presentation"
-            a role="menuitem" tabindex="-1" href="/products?category=earring" Earring
-          li role="presentation"
-            a role="menuitem" tabindex="-1" href="/products?category=bracelet" Bracelet
-      li
-        a href="/asks" Q&A
-      li
-        a href="/reservations" RESERVATION
-      li
-        a href="/reviews" REVIEW
+        .navbar-collapse.collapse.navbar-inverse-collapse
+          ul.nav.navbar-nav
+            li
+              a href="/introduces/index" ABOUT BK
+            li.dropdown
+              a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown" 
+                | JEWELRY
+                span.caret
+              ul.dropdown-menu
+                li
+                  a href="/products" 전체보기
+                li
+                  a href="/products?category=propose" Propose
+                li
+                  a href="/products?category=wedding" Wedding 
+                li 
+                  a href="/products?category=ring" Couple Ring
+                li 
+                  a href="/products?category=necklace" Necklace
+                li 
+                  a href="/products?category=earring" Earring
+                li 
+                  a href="/products?category=bracelet" Bracelet
+            li
+              a href="/asks" Q&A
+            li
+              a href="/reservations" RESERVATION
+            li
+              a href="/reviews" REVIEW
+          ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              .login_box
+                = link_to current_user.username, edit_user_registration_path
+                span#font 님 로그인 중 | 
+                = link_to "로그아웃", destroy_user_session_path, method: :delete
+            - else
+              .login_box
+                = link_to "Sign Up ", new_user_registration_path
+                span | 
+                = link_to "Log In", new_user_session_path
 
-    == yield
+
+      == yield
+
+    .navbar.footer
+

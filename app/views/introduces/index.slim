@@ -1,14 +1,97 @@
-.container style="width: 600px"
-  img src="https://lh6.googleusercontent.com/-1N-2rDh-UXE/VK31S-Jd2UI/AAAAAAAAAFQ/o8CaCp7zzz8/w1778-h1164-no/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%2B2015-01-08%2B%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2B12.03.25.png" style="width:560px;"
-  br
-  br
-  div
-    ul
-      li
-        label 위치: 종로 세운스퀘어 쥬얼리관 1032호
-      li
-        label 영업시간: 10:00 ~ 19:00
-      li 
-        label 연락처: 02-2267-0867, 010-9092-0867
-      li 
-        label 1, 3주 휴무
+.panel-group id="accordion" role="tablist" aria-multiselectable="true"
+  .panel.panel-default
+    .panel-heading role="tab" id="headingFour"
+      h4 class="panel-title"
+        a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour" 매장 안내
+    #collapseFour class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour"
+      .panel-body
+        ul.list-group
+          li.list-group-item
+            img src="https://lh6.googleusercontent.com/-1N-2rDh-UXE/VK31S-Jd2UI/AAAAAAAAAFQ/o8CaCp7zzz8/w1778-h1164-no/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%2B2015-01-08%2B%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2B12.03.25.png" style="width:100%;"
+            dl.dl-horizontal
+              dt 위치
+              dd 종로 세운스퀘어 쥬얼리관 1032호
+              dt 영업시간
+              dd 10:00 ~ 19:00
+              dt 연락처
+              dd 02-2267-0867, 010-9092-0867
+              dt 휴무일
+              dd 1, 3주 휴무
+
+  .panel.panel-default
+    .panel-heading role="tab" id="headingOne"
+      h4 class="panel-title"
+        a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" 층별 안내
+  
+    #collapseOne class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
+      .panel-body
+        ul.list-group
+          li.list-group-item
+            dl.dl-horizontal
+              dt 라이프관
+              dd 7F 사무실
+              dd 6F 국가고시학원 
+              dd 5F 귀금속 세공 
+              dd 4F 식당가
+              dd 3F 시계, 귀금속 관련 업무시설
+              dd 2F 시계, 귀금속 판매 및 수리
+              dd 1F 시계, 귀금속 판매 오픈 매장
+              dd B1 사무실
+          li.list-group-item
+            dl.dl-horizontal
+              dt 쥬얼리관
+              dd 2F 위너스 경영 아카데미
+              dd style="color: red;" 1F 시계, 귀금속 판매 오픈 매장 (BK Jewelry)
+          li.list-group-item
+            dl.dl-horizontal
+              dt 테크노관
+              dd 5F 위너스 경영 아카데미
+              dd 4F 위너스 경영 아카데미
+              dd 3F 영상, 음향기기
+              dd 2F 컴퓨터, 전자 부품, 조명, CCTV 등
+              dd 1F 가전, 카메라 판매 및 수리, 냉난방 용품
+              dd B1 편의시설
+  .panel.panel-default
+    .panel-heading role="tab" id="headingTwo"
+      h4 class="panel-title"
+        a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" 주차 안내
+    #collapseTwo class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo"
+      .panel-body
+        ul.list-group
+          li.list-group-item
+            dl.dl-horizontal
+              dt 문의 안내
+              dd 02-2173-7003
+              dt 주차 가능 대수
+              dd 약 120대 가능
+              dt 무료 주차
+              dd 매장 방문시 30분 무료 (매장 확인)
+              dt 운영 시간
+              dd 24시간 운영
+
+            dl.dl-horizontal
+              dt 요금 부과 기준
+              dd 최초 30분: 3,000원 
+              dd 추가 15분: 1,000원 
+              dd 종일: 20,000원 
+              dd 월 주차: 140,000원
+  .panel.panel-default
+    .panel-heading role="tab" id="headingThree"
+      h4 class="panel-title"
+        a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" 오시는 길
+    #collapseThree class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree"
+      .panel-body
+        ul.list-group
+          li.list-group-item
+            dl.dl-horizontal
+              dt 주소
+              dd 서울시 종로구 인의동 112-2, 112-14
+              br
+              dt 버스 이용
+              dd 종로 4가 종묘공원 앞 또는 종로 5가 하차
+              dd 101, 103, 140, 143, 150, 169, 201, 271,  273, 601, 710, 721, 7212 
+              br
+              dt 지하철 이용
+              dd 종로 3가역 11번 출구: 종로 4가 사거리 방향 도보 7분
+              dd 종로 5가역 1번 출구: 종로 4가 사거리 방향 도보 5분
+              dd 을지로 4가역 3번 출구: 종로 4가 사거리 방향 도보 6분 

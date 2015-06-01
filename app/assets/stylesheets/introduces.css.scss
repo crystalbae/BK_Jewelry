@@ -2,18 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.title {
-  text-align: center;
-}
+.panel-group {
+  width: 60%;
+  margin: 0 auto;
 
-.nav {
-  margin-top: 30px;
-  margin-bottom: 20px;
-  margin-left: 28%;
-  width: 43.5%;
-}
+  img {
+    margin-bottom: 20px;
+  }
 
-.panel {
-  padding-left: 0px;
-  padding-right: 0px;
+  a {
+    font-weight: bold;
+  }
+
+  dl, dt {
+    font-size: 12pt;
+  }
+
+  margin-bottom: 100px;
 }
