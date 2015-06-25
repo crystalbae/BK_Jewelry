@@ -1,4 +1,4 @@
-.row.container
+.row.container.products
   - if current_user.nil? || current_user.email != "admin@naver.com"
       .product_length
         = @products.length
@@ -33,3 +33,13 @@
               = link_to 'Edit', edit_product_path(product)
               |  |  
               = link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
+
+.mobile
+  .product_length
+    = @products.length
+    |  
+    | items in this category
+  .container
+    - @products.each do |product|
+      .img.col-xs-4
+        = link_to( image_tag( product.image ), product )

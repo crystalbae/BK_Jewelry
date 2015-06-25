@@ -1,8 +1,13 @@
-.container.board
+.container
   .panel.panel-default
     .panel-heading 
-      h4.panel-title 
+      span.title 
         = @review.title
+    
+      .board-writer
+        = @review.writer  
+        |  | 
+        = @review.created_at.strftime("%Y-%m-%d")
         - if current_user.nil?
         - elsif current_user.email == @review.email || current_user.email == "admin@naver.com"
             .pull-right.edit
@@ -12,7 +17,7 @@
         - else
         
     - if @product.present?
-        ul.list-group
+        ul.list-group.product-link
           li.list-group-item
             a href="/products/#{@product.id}"
               span style="font-style: italic"
@@ -20,29 +25,31 @@
                 | 제품명: 
                 = @product.name
     ul.list-group
-      li.list-group-item
+      li.list-group-item.content
         = image_tag(@review.image.thumb) if @review.image?
         br
         = @review.content
         br
         br
-  .well.well-sm
-    - if !current_user.nil?
-        form action="/reviews/add_new_comment" method="post" 
-          input type="hidden" name="id" value=@review.id 
-          input type="hidden" name="comment[writer]" value=current_user.username
-          div
-            input.form-control name="comment[content]" placeholder="댓글을 입력하세요..." type="text"
-          br
-    - @review.comments.each do |comment|
-      .comment
-        span.comment_writer = comment.writer
-        span.comment_content = comment.content
-        span.comment_time.pull-right = comment.created_at.strftime("%Y/%m/%d")
-        - if current_user.nil?
-        - elsif current_user.username == comment.writer
-            span.comment_edit.pull-right = link_to "삭제", comment, method: :delete, data: { confirm: 'Are you sure?' }
+      li.list-group-item.comment
+        - if !current_user.nil?
+            form action="/reviews/add_new_comment" method="post" 
+              input type="hidden" name="id" value=@review.id 
+              input type="hidden" name="comment[writer]" value=current_user.username
+              div
+                input.form-control name="comment[content]" placeholder="댓글을 입력하세요..." type="text"
+              br
+        - @review.comments.each do |comment|
+          .comment
+            ul.list-unstyled
+              li 
+                span.comment_writer = comment.writer
+                span.comment_content = comment.content
+                - if current_user.nil?
+                - elsif current_user.username == comment.writer
+                    span.comment_delete = link_to comment, method: :delete, data: { confirm: 'Are you sure?' }
+                      i.fa.fa-times
+                span.comment_time = comment.created_at.strftime("%Y-%m-%d")
 
-  = link_to '목록', reviews_path, class: "btn btn-default btn-sm pull-right"
-br
-br
+    a href="/reviews"
+      button.btn.btn-success.pull-right list

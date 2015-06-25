@@ -1,0 +1,92 @@
+.navbar {
+  height: 100px;
+  padding-top: 20px;
+
+  .navbar-collapse, .navbar-header {
+    .navbar-brand {
+      font-size: 35px;
+      margin-left: 60px;
+      font-family: 'Nothing You Could Do';
+    }
+
+    li {
+      font-size: 14px;
+      font-weight: bold;
+      font-family: 'Droid Sans';
+      margin-right: 10px;
+
+      .jewelry {
+        color: navy;
+      }
+    }
+
+    li.login {
+      margin-right: 50px;
+    }
+  }
+}
+
+.side-menubar {
+  width: 250px;
+  height: 100%;
+  top: 0;
+  right: -250px;
+  padding-top: 120px;
+  padding-left: 40px;
+  background-color: whitesmoke;
+  position: fixed;
+  border-style: solid;
+  border-color: #419E42;
+
+  .main-list a {
+    font-family: 'Droid Sans';
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 35px;
+
+    a {
+      color: #323133;
+    }
+  }
+
+  button {
+    width: 40%;
+  }
+}
+
+.dropdown-menu {
+  li:hover {
+    background-color: lightgrey;
+  }
+}
+
+@media (min-width: 481px) {
+  .bars-icon {
+    display: none;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .main .navbar.navbar-material-grey-50.navbar-fixed-top {
+    background-color: #419E42;
+    color: white;
+  }
+
+  .navbar .navbar-header a.navbar-brand {
+    margin-left: 10px;
+  }
+
+  ul.nav {
+    display: none;
+  }
+
+  .bars-icon {
+    display: inline;
+    padding-top: 15px;
+  }
+
+  .side-menubar {
+    right: -250px;
+  }
+
+}

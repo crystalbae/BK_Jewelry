@@ -1,0 +1,94 @@
+.container.board {
+  width: 70%;
+  margin: 0 auto;
+}
+  
+table {
+
+  th {
+    text-align: center;
+  }
+
+  .no {
+    width: 80px;
+    text-align: center;
+  }
+
+  .title {
+    width: 420px;
+    text-align: left;
+  }
+
+  .writer {
+    width: 150px;
+    text-align: center;
+  }
+
+  .date {
+    width: 150px;
+    text-align: center;
+  }
+}
+
+.page {
+  text-align: center;
+}
+
+.board.password {
+  margin-top: 80px;
+  text-align: center;
+}
+
+@media (min-width: 481px) {
+  .container .panel {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .container.form {
+    width: 60%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .container .panel {
+    width: 100%;
+  }
+
+  .container.board {
+    display: none;
+  }
+
+  .mobile table tr td {
+    img {
+      float: left;
+      margin-right: 10px;
+    }
+
+    a {
+      font-weight: bold;
+      color: black;
+    }
+
+    .board-list {
+      margin-top: 18px;
+    }
+
+    .board-writer {
+      color: grey;
+    } 
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .input-password {
+    text-align: center;
+    padding-top: 20px;
+    button {
+      width: 20%;
+    }
+  }
+}

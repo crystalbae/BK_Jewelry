@@ -1,10 +1,14 @@
-.container.board
+.container
   .panel.panel-default
-    / p#notice
-    /   = notice
     .panel-heading 
-      h3.panel-title 
+      span.title 
         = @reservation.title
+
+      .board-writer
+        = @reservation.writer  
+        |  | 
+        = @reservation.created_at.strftime("%Y-%m-%d")
+
         - if current_user.nil?
         - elsif current_user.email == @reservation.email || current_user.email == "admin@naver.com"
             .pull-right.edit
@@ -12,29 +16,32 @@
               |  | 
               = link_to '삭제', @reservation, method: :delete, data: { confirm: 'Are you sure?' }
         - else
-        
-    .panel-body
-      = @reservation.content
-      br
-      br
+    ul.list-group
+      li.list-group-item.content
+        = @reservation.content
+        br
+        br
+      li.list-group-item.comment
+        - if !current_user.nil?
+            form action="/reservations/add_new_comment" method="post" 
+              input type="hidden" name="id" value=@reservation.id 
+              input type="hidden" name="comment[writer]" value=current_user.username
+              div
+                input.form-control name="comment[content]" placeholder="댓글을 입력하세요..." type="text"
+              br
+        - @reservation.comments.each do |comment|
+          .comment
+            ul.list-unstyled
+              li 
+                span.comment_writer = comment.writer
+                span.comment_content = comment.content
+                - if current_user.nil?
+                - elsif current_user.username == comment.writer
+                    span.comment_delete = link_to comment, method: :delete, data: { confirm: 'Are you sure?' }
+                      i.fa.fa-times
+                span.comment_time = comment.created_at.strftime("%Y-%m-%d")
 
-  .well.well-sm
-    - if !current_user.nil?
-        form action="/reservations/add_new_comment" method="post" 
-          input type="hidden" name="id" value=@reservation.id 
-          input type="hidden" name="comment[writer]" value=current_user.username
-          div
-            input.form-control name="comment[content]" placeholder="댓글을 입력하세요..." type="text"
-          br
-    - @reservation.comments.each do |comment|
-      .comment
-        span.comment_writer = comment.writer
-        span.comment_content = comment.content
-        span.comment_time.pull-right = comment.created_at.strftime("%Y/%m/%d")
-        - if current_user.nil?
-        - elsif current_user.username == comment.writer
-            span.comment_edit.pull-right = link_to "삭제", comment, method: :delete, data: { confirm: 'Are you sure?' }
-
-  = link_to '목록', reservations_path, class: "btn btn-default btn-sm pull-right"
+    a href="/reservations"
+      button.btn.btn-success.pull-right list
 
     

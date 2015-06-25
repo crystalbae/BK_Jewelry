@@ -10,15 +10,12 @@
         th title
         th name
         th date
-        / th colspan="3"
 
     tbody
       - @asks.each do |ask|
         tr
           td.no
             = ask.id
-          / td.image
-          /   = image_tag(@product.image, :size => "40x40")
           td.title
             - if current_user.nil? || current_user.email != "admin@naver.com"
                 i.fa.fa-lock
@@ -46,3 +43,40 @@
       i.fa.fa-pencil
       = link_to ' Write', new_ask_path
 
+.mobile
+  blockquote
+    label Q&A
+    footer  
+      cite title="Source Title" 상품에 대해 궁금한 점이 있으시면 문의해주세요
+
+  table.table
+    - @asks.each do |ask|
+      tr
+        td.title
+          - if current_user.nil? || current_user.email != "admin@naver.com"
+              i.fa.fa-lock
+              |   
+              a href="/asks/#{ask.id}/password" 
+                = ask.title
+                |  (
+                = ask.comments.length
+                | )
+              .board-writer
+              = ask.writer  
+              |  | 
+              = ask.created_at.strftime("%Y-%m-%d")
+          - else
+              = link_to ask.title, ask
+              |  (
+              = ask.comments.length
+              | )
+              .board-writer
+                = ask.writer  
+                |  | 
+                = ask.created_at.strftime("%Y-%m-%d")
+  .line
+  a href="/asks/new"
+    button.btn.btn-success 문의하기
+  
+  .page
+    = paginate @asks

@@ -43,3 +43,45 @@
       i.fa.fa-pencil
       = link_to ' Write', new_review_path
 
+.mobile
+  blockquote
+    label REVIEW
+    footer  
+      cite title="Source Title" 구매하신 상품의 후기를 남겨주세요
+  table.table
+    - @reviews.each do |review|
+      tr
+        - if review.image.present?
+          td
+            = link_to image_tag(review.image, size: "100x80"), review
+            .board-list
+              i.fa.fa-file-image-o 
+              |  
+              = link_to review.title, review
+              |  (
+              = review.comments.length
+              | )
+              .board-writer
+                = review.writer  
+                |  | 
+                = review.created_at.strftime("%Y-%m-%d")
+        - else
+          td
+            i.fa.fa-file-text-o
+            |  
+            = link_to review.title, review
+            |  (
+            = review.comments.length
+            | )
+            .board-writer
+              = review.writer  
+              |  | 
+              = review.created_at.strftime("%Y-%m-%d")
+  .line
+  a href="/reviews/new"
+    button.btn.btn-success 글쓰기
+  .page
+    = paginate @reviews
+        
+
+

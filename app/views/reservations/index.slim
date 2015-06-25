@@ -13,7 +13,6 @@
         th title
         th name
         th date
-        / th colspan="3"
 
     tbody
       - @reservations.each do |reservation|
@@ -45,3 +44,43 @@
     button.btn.btn-default.btn-sm
       i.fa.fa-pencil
       = link_to ' Write', new_reservation_path
+
+.mobile
+  blockquote
+    label RESERVATION
+    footer  
+      cite title="Source Title" 
+        | 매장에 방문하고 싶으신 
+        span style="color: red; text-decoration: underline;" 날짜, 시간 / 관심 상품 / 성함, 연락처
+        | 를 적어주세요.
+
+  table.table
+    - @reservations.each do |reservation|
+      tr
+        td
+          - if current_user.nil? || current_user.email != "admin@naver.com"
+              i.fa.fa-lock
+              |   
+              a href="/reservations/#{reservation.id}/password" 
+                = reservation.title
+                |  (
+                = reservation.comments.length
+                | )
+              .board-writer
+              = reservation.writer  
+              |  | 
+              = reservation.created_at.strftime("%Y-%m-%d")
+          - else
+              = link_to reservation.title, reservation
+              |  (
+              = reservation.comments.length
+              | )
+              .board-writer
+                = reservation.writer  
+                |  | 
+                = reservation.created_at.strftime("%Y-%m-%d")
+  .line
+  a href="/reservations/new"
+    button.btn.btn-success 예약하기
+  .page
+    = paginate @reservations

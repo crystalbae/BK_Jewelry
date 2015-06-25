@@ -3,25 +3,31 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .comment {
-  margin-bottom: 5px;
-
-  .comment_writer {
-    padding: 5px;
-    color: MidnightBlue;
-    font-weight: bold;
+  ul li {
+    line-height: 22px;
   }
 
-  .comment_content {
-    padding: 5px;
-    color: DimGrey;
+  .comment_writer {
+    font-weight: bold;
+    margin-right: 10px;
   }
 
   .comment_time {
-    color: grey;
+    float: right;
+    margin-right: 5px;
   }
 
-  .comment_edit {
-    margin-right: 5px;
+  .comment_delete {
+    float: right;
+    
+    a {
+      color: black;
+    }
   }
 }
 
+.container .panel ul li.comment {
+  background-color: whitesmoke;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

@@ -3,7 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .panel-group {
-  width: 60%;
   margin: 0 auto;
 
   img {
@@ -14,9 +13,23 @@
     font-weight: bold;
   }
 
+  margin-bottom: 100px;
+}
+
+@media (min-width: 481px) {
+  .panel-group {
+    width: 700px;
+  }
+
   dl, dt {
     font-size: 12pt;
   }
+}
 
-  margin-bottom: 100px;
+@media (min-width: 320px) and (max-width: 480px) {
+  width: 100%;
+
+  dl, dt {
+    font-size: 10pt;
+  }
 }

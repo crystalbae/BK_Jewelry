@@ -1,32 +1,41 @@
-doctype html
-html 
+doctype html 
+html ng-app="jewelryApp" lang="ko"
   head 
     title Bk
 
-    script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"
     script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
     link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet"
-    link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"
+    link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"
+    link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Sans"
+    link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nothing+You+Could+Do"
+
+    meta name="viewport" content="width=device-width, initial-scale=1"
 
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
-  body
+  body ng-controller="imageController"
     .main
-      .navbar.navbar-material-grey-900.navbar-fixed-top
+      .navbar.navbar-material-grey-50.navbar-fixed-top
         .navbar-header.active
-          a.navbar-brand href="/products" BK Jewelry
+          a.navbar-brand href="/products"
+            i.fa.fa-diamond
+              |  BK Jewelry
+
+          .bars-icon.pull-right  
+            li.list-unstyled
+              i.fa.fa-bars.fa-2x.off 
 
         .navbar-collapse.collapse.navbar-inverse-collapse
-          ul.nav.navbar-nav
+          ul.nav.navbar-nav.pull-right
             li
               a href="/introduces/index" ABOUT BK
             li.dropdown
-              a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown" 
+              a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle jewelry" data-toggle="dropdown"
                 | JEWELRY
                 span.caret
-              ul.dropdown-menu
+              ul.dropdown-menu.jewelry
                 li
                   a href="/products" 전체보기
                 li
@@ -47,20 +56,65 @@ html
               a href="/reservations" RESERVATION
             li
               a href="/reviews" REVIEW
-          ul.nav.navbar-nav.navbar-right
-            - if user_signed_in?
-              .login_box
-                = link_to current_user.username, edit_user_registration_path
-                span#font 님 로그인 중 | 
-                = link_to "로그아웃", destroy_user_session_path, method: :delete
-            - else
-              .login_box
-                = link_to "Sign Up ", new_user_registration_path
-                span | 
-                = link_to "Log In", new_user_session_path
-
+            li.login
+              - if user_signed_in?
+                a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle info" data-toggle="dropdown" 
+                  = current_user.username
+                  span.caret
+                ul.dropdown-menu.info
+                  li
+                    = link_to "My info", edit_user_registration_path 
+                  li
+                    = link_to "Log Out", destroy_user_session_path, method: :delete
+              - else
+                .login_box
+                  / = link_to "Sign Up", new_user_registration_path
+                  a href="/users/sign_up" 
+                    button.btn.btn-success.btn-sm Sign Up
+                  a href="/users/sign_in"
+                    button.btn.btn-success.btn-sm Log In
 
       == yield
 
-    .navbar.footer
+  .side-menubar
+    ul.list-unstyled
+      li.main-list
+        a href="/introduces/index" About BK Jewlery
+      li.main-list
+        a href="/products" JEWELRY
+        ul
+          li
+            a href="/products?category=propose" Propose
+          li
+            a href="/products?category=wedding" Wedding 
+          li 
+            a href="/products?category=ring" Couple Ring
+          li 
+            a href="/products?category=necklace" Necklace
+          li 
+            a href="/products?category=earring" Earring
+          li 
+            a href="/products?category=bracelet" Bracelet
+      li.main-list
+        a href="/asks" Q&A
+      li.main-list
+        a href="/reservations" RESERVATION
+      li.main-list
+        a href="/reviews" REVIEW
+      li.login
+        - if user_signed_in?
+          li.main-list
+            a href="#" 
+              = current_user.username
+            ul
+              li
+                = link_to "My info", edit_user_registration_path 
+              li
+                = link_to "Log Out", destroy_user_session_path, method: :delete
+        - else
+          .login_box
+            a href="/users/sign_up" 
+              button.btn.btn-sm.btn-success Sign Up
+            a href="/users/sign_in"
+              button.btn.btn-sm.btn-success Log In
 
